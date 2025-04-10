@@ -1,5 +1,6 @@
 # development
 out
+outfw
 *.so
 *.pyc
 __pycache__/
