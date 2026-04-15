@@ -62,6 +62,21 @@ src-$(CONFIG_USBSERIAL) += generic/usb_cdc.c
 src-$(CONFIG_SERIAL) += gd32/serial.c generic/serial_irq.c
 src-$(CONFIG_HAVE_GPIO_HARD_PWM) += $(pwm-src-y)
 
+# Rename binary output file rules
+ifeq ($(CONFIG_BOARD_INFO_CONFIGURE),y)
+
+ifneq ($(board_hw_version)$(board_fw_version),)
+rename_bin := $(board_hw_version)-$(board_fw_version).bin
+
+target-y += $(OUT)$(rename_bin)
+
+$(OUT)$(rename_bin):$(OUT)klipper.bin
+	@echo "  Rename hex file"
+	$(Q)cp -v $< $@
+endif
+
+endif
+
 # Build the additional bin output file
 target-y += $(OUT)klipper.bin
 
