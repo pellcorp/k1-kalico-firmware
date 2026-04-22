@@ -8,3 +8,4 @@ rm -rf outfw/
 ./_build.sh bed
 ./_build.sh noz
 ./_build.sh mcu
+./_build.sh ke-mcu
