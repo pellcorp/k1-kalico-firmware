@@ -5,7 +5,9 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd -P)"
 cd $SCRIPT_DIR
 
 rm -rf outfw/
-./_build.sh bed
-./_build.sh noz
-./_build.sh mcu
-./_build.sh ke-mcu
+./_build.sh bed || exit $?
+./_build.sh noz || exit $?
+./_build.sh mcu || exit $?
+./_build.sh ke-mcu || exit $?
+./_build.sh cr10se-noz || exit $?
+./_build.sh cr10se-mcu || exit $?
