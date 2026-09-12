@@ -3,6 +3,8 @@
 # Copyright (C) 2024 Gareth Farrington <gareth@waves.ky>
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
+from __future__ import annotations
+
 import logging
 
 from klippy.extras import bulk_sensor, bus
