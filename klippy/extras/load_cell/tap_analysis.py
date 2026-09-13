@@ -5,7 +5,6 @@
 # This file may be distributed under the terms of the GNU GPLv3 license.
 from __future__ import annotations
 
-import copy
 import logging
 import math
 import time
@@ -689,9 +688,7 @@ class TapAnalysisHelper:
             tap_analysis.set_validation_error(ve)
             tap_analysis.log_trapq()
         # notify calibration tool, if any:
-        if self._calibration_cb and not self._calibration_cb(
-            copy.deepcopy(tap_analysis)
-        ):
+        if self._calibration_cb and not self._calibration_cb(tap_analysis):
             self._calibration_cb = None
         # tap classifier always gets to process the data
         try:

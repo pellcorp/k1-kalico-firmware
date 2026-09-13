@@ -1044,6 +1044,7 @@ class DriftFilterCalibration:
 
     def calibrate(self, gcmd: GCodeCommand):
         try:
+            import numpy as np
             import scipy.signal as signal
 
             _ = signal
@@ -1162,6 +1163,8 @@ class DriftFilterCalibration:
     @staticmethod
     def _calculate_segment_slopes(force_data, sampling_rate, segment_duration):
         """Split the graph into segments and calculate a slope for each."""
+        import numpy as np
+
         segment_samples = int(segment_duration * sampling_rate)
         num_segments = len(force_data) // segment_samples
         segments = np.array_split(force_data, num_segments)
@@ -1197,6 +1200,8 @@ class DriftFilterCalibration:
         max_drift_rate: float,
         gcmd: GCodeCommand,
     ):
+        import numpy as np
+
         current_cutoff = cutoff
         while current_cutoff <= max_cutoff_frequency:
             filtered_data = self._apply_drift_filter(
@@ -1275,6 +1280,8 @@ class PullbackDistanceCalibration:
         pass
 
     def calibrate(self, gcmd: GCodeCommand):
+        import numpy as np
+
         self._gcmd = gcmd
         gcmd.respond_info("Starting pullback_distance calibration...")
         bed_mesh: BedMesh = self._printer.lookup_object(
